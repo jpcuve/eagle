@@ -19,7 +19,7 @@
 <div style="margin-top: 2em">
 {% for filename in output -%}
     <!-- note that I am pointing the image src to the flask app -->
-    <span style="display: inline-block; margin: 0 1em 1em 0; text-align: center;">
+    <span style="display: inline-block margin: 0 1em 1em 0 text-align: center">
         <img src="/get-image/{{ filename }}" alt="{{ filename[:-4] }}"/>
         <br/>
         <span>{{ filename[:-4] }}</span>
