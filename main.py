@@ -53,14 +53,15 @@ def get_image(filename: str):
     data = blob.download_as_bytes()
     # ok you will probably not have svg but png or jpeg
     # if you need to do some image processing, you can do it here
+    # I just output the data from the blob
     return Response(data, mimetype='image/svg+xml')
 
 
 @app.route('/favicon.ico')
 def favicon():
-    return redirect(url_for('static', filename='favicon.ico'))  # choose your own web site icon
+    return redirect(url_for('static', filename='favicon.ico'))  # choose your own icon
 
 
 @app.route("/hello-world")
 def hello_world():
-    return model  # loaded from dummy_model.txt
+    return ",".join(model)
