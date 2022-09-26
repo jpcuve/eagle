@@ -16,8 +16,6 @@ development = app.config['ENV'] == 'development'
 if development:  # if working from my pc
     # point GOOGLE_APPLICATION_CREDENTIALS to my json credentials file
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(app.config['PATH_TO_GCP_CREDENTIALS'])
-    # lower logging level to DEBUG
-    logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.DEBUG)
 
 # setup logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
