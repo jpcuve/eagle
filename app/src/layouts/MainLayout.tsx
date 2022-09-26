@@ -11,7 +11,7 @@ import {
   Snackbar, Stack,
   Toolbar
 } from '@mui/material'
-import {Person, Logout, Camera} from '@mui/icons-material'
+import {Menu as ThreeBars, Logout, Camera} from '@mui/icons-material'
 import {ApplicationState, state} from '../store'
 import {useSelector} from 'react-redux'
 import {defaultFeedback, Feedback} from '../domain/feedback'
@@ -44,7 +44,7 @@ const MainLayout: FC = () => {
               </Stack>
               <Stack direction="row">
                 <IconButton color="secondary" onClick={e => setAnchorEl(e.currentTarget)}>
-                  <Person/>
+                  <ThreeBars/>
                 </IconButton>
               </Stack>
             </Box>

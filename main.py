@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 CONFIGURATION_LOCATION = 'FLASK_CONFIG'
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./app/build', static_url_path='/')
 CORS(app)
 app.config.from_object('config')  # read from config.py into app.config
 if CONFIGURATION_LOCATION in os.environ.keys():  # if FLASK_CONFIG defined in environment
@@ -30,10 +30,10 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
 # model = [blob.name for blob in gcs_client.list_blobs(app.config['BUCKET_NAME'])]
 
 
-@app.route('/')
-def home():
-    # redirects / to your home page
-    return redirect('/app/home')
+# @app.route('/')
+# def home():
+#     # redirects / to your home page
+#     return redirect('/app/home')
 
 
 # @app.route('/app/')
@@ -41,10 +41,14 @@ def home():
 #     return app_more(None)
 
 
-@app.route('/app/<path:text>')
-def app_more(text: str):
-    index = Path(__file__).parent / 'static' / 'build' / 'index.html'
-    return send_file(str(index), mimetype='text/html')
+# @app.route('/app/<path:text>')
+# def app_more(text: str):
+#     index = Path(__file__).parent / 'static' / 'build' / 'index.html'
+#     return send_file(str(index), mimetype='text/html')
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 
 @app.route('/process', methods=['POST'])
@@ -79,11 +83,11 @@ def search():
     return jsonify([{'filename': f'image-{i}'} for i in range(1000)])
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return redirect(url_for('static', filename='favicon.ico'))  # choose your own icon
-
-
-@app.route("/hello-world")
-def hello_world():
-    return ",".join(model)
+# @app.route('/favicon.ico')
+# def favicon():
+#     return redirect(url_for('static', filename='favicon.ico'))  # choose your own icon
+#
+#
+# @app.route("/hello-world")
+# def hello_world():
+#     return ",".join(model)

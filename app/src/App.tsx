@@ -9,7 +9,7 @@ import SearchResultsView from './views/SearchResultsView'
 
 const App: FC = () => {
   return (
-    <BrowserRouter basename={process.env.REACT_APP_ROUTER_BASE_NAME}>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout/>}>
           <Route path="*" element={<MainView/>}/>

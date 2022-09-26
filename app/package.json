@@ -1,7 +1,6 @@
 {
   "name": "app",
   "version": "0.1.0",
-  "homepage": "/static/build/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
