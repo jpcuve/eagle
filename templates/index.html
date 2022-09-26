@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Eagle</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <form method="post" action="/process">
+    <div class="g-recaptcha" data-sitekey="{{ captcha_site_key }}"></div>
     <label>Search
         <input name="search" type="text"/>
     </label>

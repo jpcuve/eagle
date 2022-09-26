@@ -31,7 +31,8 @@ model = [blob.name for blob in gcs_client.list_blobs(app.config['BUCKET_NAME'])]
 
 @app.route('/')
 def home():
-    return render_template('index.html', output=[])  # redirects / to your home page
+    # redirects / to your home page
+    return render_template('index.html', output=[], captcha_site_key=current_app.config['CAPTCHA_SITE_KEY'])
 
 
 @app.route('/process', methods=['POST'])
@@ -41,7 +42,8 @@ def process():
     # for the demo all I do is randomize the image names to present them in a different order
     output = model.copy()
     random.shuffle(output)
-    return render_template('index.html', output=output)  # return to your home page, with result data
+    # return to your home page, with result data
+    return render_template('index.html', output=output, captcha_site_key=current_app.config['CAPTCHA_SITE_KEY'])
 
 
 @app.route('/get-image/<filename>')
