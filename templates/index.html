@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Eagle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <base href="/"/>
 </head>
 <body>
 <form method="post" action="/process">
