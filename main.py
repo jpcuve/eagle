@@ -24,32 +24,26 @@ if development:  # if working from my pc
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',
                     level=logging.DEBUG if development else logging.INFO)
 
-
 # reading image file names from a bucket in Google Cloud Storage, and putting them
 # into an array. That will be my model for this demo.
 gcs_client = storage.Client()
 model = [blob.name for blob in gcs_client.list_blobs(app.config['BUCKET_NAME'])]
+
 
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
 
 
-@app.route('/process', methods=['POST'])
-def process():
-    search = request.form.get('search')
-    current_app.logger.debug(f"Search: {search}")
-    # for the demo all I do is randomize the image names to present them in a different order
-    output = model.copy()
-    random.shuffle(output)
-    # return to your home page, with result data
-    return render_template('index.html', output=output, captcha_site_key=current_app.config['CAPTCHA_SITE_KEY'])
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
 
 
 @app.route('/get-image/<filename>')
 def get_image(filename: str):
     current_app.logger.debug(filename)
-# I am using the filename to fetch the image data on GCS
+    # I am using the filename to fetch the image data on GCS
     bucket = gcs_client.bucket(app.config['BUCKET_NAME'])
     blob = bucket.blob(filename)
     data = blob.download_as_bytes()

@@ -8,6 +8,9 @@ const SearchResultsView: FC = () => {
   const searchResults = useSelector<ApplicationState, SearchResult[]>(state => state.searchResults)
   return (
     <Grid container spacing={1} padding={1}>
+      <Grid item xs={12}>
+        Search results
+      </Grid>
       {searchResults.map(it => (
         <Grid item xs={12} sm={6} md={4} lg={2} xl={1} key={it.filename}>
           <img src={`${process.env.REACT_APP_REMOTE_URL}/get-image/${it.filename}`} alt={it.filename} style={{width:'100%'}}/>
