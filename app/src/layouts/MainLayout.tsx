@@ -23,9 +23,10 @@ const MainLayout: FC = () => {
   const feedback = useSelector<ApplicationState, Feedback>(state => state.feedback)
   const [anchorEl, setAnchorEl] = useState<HTMLSpanElement | null>(null)
   const fetching = useSelector<ApplicationState, boolean>(state => state.fetching)
+  console.log(`Fetching: ${fetching}`)
   return (
    <>
-      {fetching && <LinearProgress color="secondary" sx={{
+      {fetching && <LinearProgress color="primary" sx={{
         position: 'absolute',
         top: 0,
         left: 0,

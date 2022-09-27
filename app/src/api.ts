@@ -11,7 +11,7 @@ async function wrap<T>(fn: () => Promise<T>): Promise<T> {
   state.updateFeedback(defaultFeedback)
   state.updateFetching(true)
   try {
-    return fn()
+    return await fn()
   } catch (e: any) {
     state.updateFeedback({error: e.message})
     throw e
